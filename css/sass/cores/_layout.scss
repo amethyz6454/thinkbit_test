@@ -1,0 +1,18 @@
+@import "../cores/variables";
+@import "../extend/scrollbar-remove";
+
+html {
+    @extend %extend-scrollbar-thin;
+}
+
+body {
+    background-color: $gray-900;
+    color: $gray-200;
+
+    > div:first-child {
+        flex: 1 0 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}

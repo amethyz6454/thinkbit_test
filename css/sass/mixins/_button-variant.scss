@@ -1,0 +1,41 @@
+@mixin button-variant($color, $variant) {
+    --btn-bg: var(--color-#{$variant});
+    --btn-border: var(--color-#{$variant});
+    --btn-text: var(--color-#{$variant}-text-contrast);
+
+    @include hover {
+        --btn-bg: var(--color-#{$variant}-highlight);
+    }
+}
+
+@mixin button-outline-variant($color, $variant) {
+    &.outline {
+        --btn-text: var(--color-#{$variant});
+
+        @include hover {
+            --btn-text: var(--mono-000);
+            --btn-bg: var(--color-#{$variant});
+        }
+
+        &:not(:disabled):not(.disabled):active {
+            @if ($variant == "secondary") {
+                --btn-text: var(--mono-000);
+            } @else {
+                --btn-text: var(--mono-010);
+            }
+            --btn-bg: var(--color-#{$variant});
+        }
+
+        > strong > span {
+            background-color: var(--color-#{$variant});
+        }
+    }
+}
+
+@mixin button-size($padding-y, $padding-x, $font-size, $line-height, $color-border-radius, $height) {
+    padding: $padding-y $padding-x;
+    font-size: $font-size;
+    line-height: $line-height;
+    border-radius: $color-border-radius;
+    height: $height;
+}

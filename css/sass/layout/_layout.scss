@@ -1,0 +1,62 @@
+@import "../cores/variables";
+@import "../cores/mixins";
+@import "../extend/animate";
+@import "../extend/scrollbar-remove";
+
+.layout {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 100%;
+	padding-left: var(--layout-drawer-collapse-width);
+	background-color: var(--layout-bg);
+	@extend %extend-animate;
+
+	&.expanded {
+		padding-left: var(--layout-drawer-expanded-width);
+	}
+
+	@include media-breakpoint-down(lg) {
+		padding-left: 0;
+
+		&.expanded {
+			padding-left: 0;
+		}
+	}
+}
+
+.main {
+	flex: 1 1 100%;
+	padding-top: $spacer-64;
+	display: flex;
+	flex-direction: column;
+
+	@include media-breakpoint-down(xs) {
+		padding-top: $spacer-80;
+		gap: var(--gap-xl);
+	}
+}
+
+// .container {
+//     @include make-container();
+//     @include make-container-max-widths();
+// }
+
+.footer {
+	flex-shrink: 0;
+	flex-grow: 0;
+	font-size: $font-size-10;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	color: var(--mono-005);
+	padding-top: $spacer-32;
+	padding-bottom: $spacer-32;
+	background-color: var(--layout-bg);
+}
+
+.foot {
+	text-align: center;
+
+	p {
+		margin-bottom: 0;
+	}
+}

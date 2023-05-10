@@ -1,0 +1,87 @@
+// colors
+$black: black !default;
+$white: white !default;
+
+// =========================================== monochrome colors settings
+$mono-000: #f0f0f0 !default; //
+$mono-001: #e6e6e6 !default; //
+$mono-002: #cfcfcf !default; //
+$mono-003: #b8b8b8 !default; //
+$mono-004: #a1a1a1 !default; //
+$mono-005: #8a8a8a !default; //
+$mono-006: #737373 !default; //
+$mono-007: #5c5c5c !default; //
+$mono-008: #454545 !default; //
+$mono-009: #2e2e2e !default; //
+$mono-010: #232323 !default; //
+
+// =========================================== brand colors settings
+// $blue-color: #303ac0 !default;
+$blue-color: #005aa9 !default;
+$red-color: #cc0000 !default;
+$green-color: #229922 !default;
+$orange-color: #fb630b !default;
+$yellow-color: #ffcc00 !default;
+$cyan-color: #00aaaa !default;
+
+$brand-color-primary: $orange-color !default;
+$brand-color-secondary: $blue-color !default;
+
+$build-primary: $brand-color-primary !default;
+$build-secondary: $brand-color-secondary !default;
+$build-success: $green-color !default;
+$build-info: $cyan-color !default;
+$build-warning: $orange-color !default;
+$build-danger: $red-color !default;
+$build-white: $white !default;
+$build-black: $black !default;
+$build-grey: $mono-007 !default;
+
+$theme-colors: (
+	("default", $build-grey),
+	("primary", $build-primary),
+	("secondary", $build-secondary),
+	("success", $build-success),
+	("danger", $build-danger),
+	("warning", $build-warning),
+	("info", $build-info)
+);
+$theme-secondary-colors: (
+	("default", $build-grey),
+	("primary", $build-primary),
+	("secondary", $mono-002),
+	("success", $build-success),
+	("danger", $build-danger),
+	("warning", $build-warning),
+	("info", $build-info)
+);
+
+$state-colors: "valid", "invalid";
+$state-texts: (("valid", "success"), ("invalid", "danger"));
+
+$border-color: var(--mono-008) !default;
+$divider-color: var(--mono-002) !default;
+$text-color: var(--layout-color) !default;
+$accent-color: var(--color-primary) !default;
+$heading-color: var(--color-primary) !default;
+$shadow-color: var(--mono-009) !default;
+
+$build-shadow: hsla(var(--mono-002-hsl), 0.4) !default;
+$build-shadow-dark: hsla(var(--mono-010-hsl), 0.25) !default;
+
+$text-muted: var(--mono-005) !default;
+
+$highlight-color: var(--mono-002) !default;
+$highlight-bg: var(--mono-001) !default;
+$highlight-border: $border-color !default;
+
+$link-color: var(--link-color) !default;
+
+$build-input-bg: var(--mono-000) !default;
+$build-input-border: var(--form-input-focus-border) !default;
+$build-input-focus: var(--form-input-focus-color) !default;
+
+$body-bg: var(--layout-bg) !default;
+$body-color: $text-color !default;
+
+$loading-span-bg: var(--mono-000) !default;

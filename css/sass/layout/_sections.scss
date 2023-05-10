@@ -1,0 +1,304 @@
+@import "../cores/variables";
+@import "../cores/mixins";
+@import "../extend/animate";
+@import "../extend/self-backdrop";
+@import "../extend/_scrollbar-remove.scss";
+
+%extend-section-prop {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-lg);
+
+    > * {
+        margin-bottom: 0;
+    }
+}
+
+$section-side-width: $spacer-32 * 10;
+$section-group-spacing: var(--gap-xl);
+
+.section {
+    @extend %extend-section-prop;
+
+    .heading {
+        font-size: $font-size-24;
+        font-weight: 500;
+    }
+
+    @include media-breakpoint-down(sm) {
+        margin-inline: initial;
+    }
+
+    @include media-breakpoint-down(md) {
+        width: 100%;
+    }
+
+    @include media-breakpoint-down(xs) {
+        display: block;
+
+        .heading {
+            text-align: center;
+        }
+    }
+}
+
+.group {
+    padding: $section-group-spacing;
+    display: flex;
+    gap: $section-group-spacing;
+    flex-grow: 1;
+    background-color: var(--layout-bg);
+
+    @include media-breakpoint-down(md) {
+        flex-direction: column;
+        padding-top: $section-group-spacing;
+        gap: $section-group-spacing;
+    }
+
+    @include media-breakpoint-down(xs) {
+        padding: 0 $spacer-8;
+    }
+}
+
+.fill {
+    flex: 1 1 100%;
+    @extend %extend-section-prop;
+
+    @include media-breakpoint-down(md) {
+        --card-body-pad: #{$spacer-40};
+        flex: 0 0 auto;
+        width: 100%;
+    }
+}
+
+.body {
+    @extend %extend-section-prop;
+}
+
+.contain {
+    margin-inline: auto;
+    width: min(100%, map-get($container-max-widths, md));
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap-lg);
+
+    &[data-columns="2"] {
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+
+        @include media-breakpoint-down(xs) {
+            grid-template-columns: 1fr;
+        }
+    }
+}
+
+.side {
+    --card-body-pad: #{$spacer-18};
+    flex: 0 0 $section-side-width;
+    display: flex;
+    flex-direction: column;
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--gap-lg);
+    }
+
+    .heading {
+        font-size: $font-size-18;
+        font-weight: 500;
+    }
+
+    > *:not(:last-child) {
+        margin-bottom: 0;
+    }
+
+    @include media-breakpoint-down(md) {
+        --card-body-pad: #{$spacer-40};
+        margin-inline: auto;
+        width: min(100%, map-get($container-max-widths, md));
+    }
+
+    @include media-breakpoint-down(sm) {
+        --card-body-pad: #{$spacer-24};
+    }
+
+    @include media-breakpoint-down(xs) {
+        --card-body-pad: #{$spacer-18};
+        display: block;
+        flex-basis: auto;
+
+        .head {
+            padding-bottom: 0;
+        }
+
+        .heading {
+            padding-top: $spacer-16;
+            padding-bottom: $spacer-12;
+        }
+    }
+}
+
+.head {
+    display: flex;
+    gap: var(--gap-lg);
+    justify-content: space-between;
+    align-items: flex-end;
+    min-height: $spacer-48;
+
+    .heading {
+        margin-bottom: $spacer-8;
+
+        @include media-breakpoint-down(xs) {
+            &:last-child {
+                margin: 0;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(lg) {
+        flex-wrap: wrap;
+        gap: var(--gap);
+        position: relative;
+    }
+
+    @include media-breakpoint-down(md) {
+        min-height: 0;
+    }
+
+    @include media-breakpoint-down(xs) {
+        padding-bottom: $spacer-24;
+        display: block;
+    }
+}
+
+.drawer {
+    @extend %extend-animate;
+
+    --layout-convert-drawer-pad: #{$spacer-24};
+    --layout-convert-drawer-pad-1: #{$spacer-64};
+    --layout-convert-drawer-card-neg-mar: calc(var(--layout-convert-drawer-pad) * -1);
+    --layout-drawer-expanded-width: #{$spacer-32 * 10};
+    --gap-lg: #{$spacer-4};
+
+    position: fixed;
+    padding: 0;
+    gap: 0;
+    top: 0;
+    height: 100%;
+    right: calc(var(--layout-drawer-expanded-width) * -1);
+    width: var(--layout-drawer-expanded-width);
+    z-index: 1120;
+    box-shadow: var(--ui-box-shadow);
+    border-radius: $spacer-16 0 0 $spacer-16;
+
+    &.hover {
+        right: calc((var(--layout-drawer-expanded-width) * -1) + 5px);
+    }
+
+    &.active,
+    &.hover:hover {
+        right: 0;
+    }
+
+    .content {
+        flex-grow: 1;
+        background-color: var(--mono-001);
+        height: 100%;
+        border-radius: $spacer-16 0 0 $spacer-16;
+        padding-bottom: $spacer-80;
+    }
+
+    .head {
+        padding: 0 $spacer-8;
+        position: relative;
+        z-index: 1;
+        margin-bottom: 0;
+        padding-top: $spacer-24;
+
+        .heading {
+            margin-bottom: 0;
+        }
+    }
+
+    .body {
+        padding: 0 $spacer-8;
+        gap: 0;
+        position: relative;
+        z-index: 1;
+        height: 100%;
+        overflow-x: hidden;
+        overflow-y: auto;
+        flex: 1 1 100%;
+        @extend %extend-scrollbar-thin;
+
+        .cardGroup {
+            gap: 0;
+        }
+
+        .card:not(:last-child) {
+            border-width: 0;
+            border-top-width: 1px;
+        }
+
+        .btn {
+            padding-top: $input-padding-y;
+            padding-bottom: $input-padding-y;
+        }
+    }
+}
+
+.close {
+    position: absolute;
+    width: #{$spacer-8 * 10};
+    height: $spacer-32;
+    left: -#{$spacer-56};
+    overflow: hidden;
+    bottom: 50%;
+    translate: 0 50%;
+    font-size: $font-size-12;
+    font-weight: 500;
+    rotate: -90deg;
+    background-color: var(--color-primary);
+    color: white;
+    border-radius: $round $round 0 0;
+    @extend %extend-animate;
+
+    &:focus,
+    &:active {
+        outline: none;
+        box-shadow: none;
+    }
+
+    .closeIcon {
+        display: none;
+    }
+
+    @include media-breakpoint-down(xs) {
+        bottom: $spacer-40;
+        rotate: 0deg;
+        overflow: hidden;
+        text-indent: -999rem;
+        height: $spacer-48;
+        width: $spacer-48;
+        display: grid;
+        place-items: center;
+        border-radius: 999rem;
+        transition: all 200ms;
+        left: auto;
+        right: calc(100% + #{$spacer-24});
+
+        .closeText {
+            display: none;
+        }
+
+        .closeIcon {
+            display: block;
+        }
+
+        .active & {
+            left: $spacer-16;
+        }
+    }
+}

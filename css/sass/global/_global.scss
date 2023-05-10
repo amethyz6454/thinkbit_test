@@ -1,0 +1,153 @@
+@import "../cores/variables";
+@import "../cores/mixins";
+@import "../extend/animate";
+@import "../extend/form-appearance";
+@import "../extend/scrollbar-remove";
+
+html,
+body {
+	height: 100%;
+	color: $text-color;
+	background-color: $body-bg;
+}
+
+html {
+	@extend %extend-scrollbar-thin;
+
+	&.drawer-active {
+		overflow: hidden;
+	}
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	font-size: $spacer-14;
+
+	@include media-breakpoint-down(xs) {
+		line-height: 1.5;
+	}
+}
+
+label,
+legend {
+	margin-bottom: $spacer-8;
+	color: var(--form-label-color);
+}
+
+label {
+	display: inline-block;
+}
+
+legend {
+	width: 100%;
+	max-width: 100%;
+	white-space: normal;
+	padding: 0;
+}
+
+a {
+	color: var(--color-primary);
+	cursor: pointer;
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+%extend-checkbox-radio {
+	@include size($spacer-20);
+	background-color: $input-bg;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: $spacer-16;
+	border: $input-border;
+	box-shadow: $input-shadow;
+	cursor: pointer;
+	margin: 0;
+	margin-right: $spacer-10;
+	transition: $input-transition;
+	vertical-align: -#{$spacer-4};
+	@extend %extend-form-appearance;
+
+	&:focus {
+		box-shadow: $input-focus-shadow;
+		outline: 0;
+	}
+
+	&:checked {
+		background-color: var(--mono-010);
+	}
+
+	&:disabled,
+	&[readonly] {
+		opacity: $build-default-opacity;
+		pointer-events: none;
+	}
+}
+
+input[type="checkbox"] {
+	border-radius: $round-sm;
+	@extend %extend-checkbox-radio;
+
+	&:checked {
+		background-image: var(--form-checkbox-icon);
+	}
+}
+
+input[type="radio"] {
+	border-radius: 50%;
+	@extend %extend-checkbox-radio;
+
+	&:checked {
+		background-image: var(--form-radio-icon);
+	}
+}
+
+.column-list {
+	position: relative;
+	padding-left: 0;
+	column-count: 2;
+	column-gap: 0;
+
+	&[data-column-count="3"] {
+		column-count: 3;
+	}
+
+	&[data-column-count="4"] {
+		column-count: 4;
+	}
+
+	li {
+		position: relative;
+	}
+
+	@include media-breakpoint-down(sm) {
+		&[data-column-count="3"],
+		&[data-column-count="4"] {
+			column-count: 1;
+		}
+	}
+}
+
+.is-hidden {
+	pointer-events: none;
+	position: absolute;
+	overflow: hidden;
+	@include size(0);
+	padding: 0 !important;
+	visibility: hidden;
+}
+
+[disabled],
+:disabled,
+.disabled {
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.4;
+
+	* {
+		cursor: default;
+	}
+}

@@ -1,0 +1,60 @@
+@import "../cores/variables";
+@import "../cores/mixins";
+@import "../extend/button-extend";
+
+.btn {
+	@extend %extend-btn;
+	@extend %extend-btn-pseudo-active;
+	@extend %extend-btn-states;
+
+	@at-root a#{&} {
+		text-decoration: none;
+	}
+}
+
+@each $variant, $color in $theme-colors {
+	.btn-#{$variant} {
+		@include button-variant($color, $variant);
+	}
+}
+
+a.btn.disabled,
+fieldset:disabled a.btn {
+	pointer-events: none;
+}
+
+.btn-wide {
+	min-width: $btn-wide-width;
+
+	&.btn-sm {
+		min-width: $btn-wide-sm-width;
+	}
+
+	@include media-breakpoint-down(sm) {
+		width: 100%;
+
+		& + .btn {
+			margin: $spacer-24 0 0;
+		}
+	}
+}
+
+.btn-block {
+	display: flex;
+	width: 100%;
+
+	+ .btn-block {
+		margin-top: $btn-block-spacing-y;
+	}
+}
+
+.btn-sm {
+	@include button-size(
+		$btn-padding-y-sm,
+		$btn-padding-x-sm,
+		$btn-font-size-sm,
+		$btn-line-height-sm,
+		$btn-border-radius-sm,
+		$btn-height-sm
+	);
+}

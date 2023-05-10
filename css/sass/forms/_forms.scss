@@ -1,0 +1,45 @@
+@import "../cores/variables";
+@import "../cores/mixins";
+@import "../extend/aria-extend";
+
+$strengths: (
+	("weak", 25%, var(--color-danger)),
+	("poor", 50%, var(--color-warning)),
+	("fair", 75%, var(--color-success-bg)),
+	("good", 100%, var(--color-success))
+);
+
+.form-group {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: var(--gap);
+
+	> legend,
+	> label {
+		margin-bottom: 0;
+		max-width: unset;
+	}
+
+	@include media-breakpoint-down(xs) {
+		.form-addon {
+			flex-grow: 1;
+		}
+	}
+}
+
+.form-addon {
+	position: relative;
+	height: $input-height;
+	aspect-ratio: 1/1;
+	display: flex;
+
+	> .icon {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		line-height: $input-padding-x;
+		@include size($spacer-24);
+	}
+}

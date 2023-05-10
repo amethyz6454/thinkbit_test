@@ -1,0 +1,5 @@
+%extend-design-card {
+    border-radius: $round;
+    background-color: var(--card-bg);
+    box-shadow: var(--ui-box-shadow);
+}

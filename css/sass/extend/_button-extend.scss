@@ -1,0 +1,92 @@
+@import "../cores/variables";
+@import "../cores/mixins";
+@import "../extend/aria-extend";
+
+%extend-btn {
+	position: relative;
+	display: inline-flex;
+	user-select: none;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	white-space: nowrap;
+	text-align: center;
+	vertical-align: middle;
+	font-weight: $btn-font-weight;
+	text-transform: $btn-text-transform;
+	border: $btn-border-width solid var(--btn-border);
+	background-color: var(--btn-bg);
+	color: var(--btn-text);
+	box-shadow: $btn-shadow;
+	gap: $btn-gap;
+	letter-spacing: $btn-letter-spacing;
+	@include button-size(
+		$btn-padding-y,
+		$btn-padding-x,
+		$btn-font-size,
+		$btn-line-height,
+		$btn-border-radius,
+		$btn-height
+	);
+	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+		box-shadow 0.15s ease-in-out;
+}
+
+%extend-btn-states {
+	@include hover {
+		text-decoration: none;
+	}
+
+	&:focus {
+		box-shadow: $btn-focus-shadow;
+	}
+
+	&.disabled,
+	&[disabled],
+	&:disabled {
+		strong span {
+			background-color: $loading-span-bg;
+		}
+	}
+
+	&:not(:disabled):not(.disabled):active,
+	&:not(:disabled):not(.disabled).is-active {
+		&:focus {
+			box-shadow: $btn-focus-shadow;
+		}
+	}
+
+	&.process {
+		color: $btn-process-color !important;
+	}
+
+	@include media-breakpoint-down(xs) {
+		margin-left: 0;
+		width: 100%;
+		white-space: normal;
+	}
+}
+
+%extend-btn-pseudo-active {
+	&::after {
+		pointer-events: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		display: block;
+		background-repeat: no-repeat;
+		opacity: 0;
+		@include size($btn-pseudo-size);
+		transform: scale(10);
+		transition: $btn-pseudo-transition;
+		background-image: $btn-pseudo-bg-image;
+		background-position: $btn-pseudo-bg-pos;
+		content: "";
+	}
+
+	&:active::after {
+		transition: 0s;
+		transform: scale(0);
+		opacity: $btn-pseudo-active-opacity;
+	}
+}

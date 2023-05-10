@@ -1,0 +1,255 @@
+// SCSS File
+// root variables.scss
+
+// root imports
+@import "sass/cores/functions";
+@import "sass/cores/variables";
+
+// root variables
+:root {
+	// START: DO NOT EDIT || DO NOT EDIT || DO NOT EDIT
+	--base-theme: light;
+	--black: #{$black};
+	--white: #{$white};
+
+	--black-hsl: #{hexToHSL($black)};
+	--white-hsl: #{hexToHSL($white)};
+
+	// monochromes
+	--mono-000: #{$mono-000};
+	--mono-001: #{$mono-001};
+	--mono-002: #{$mono-002};
+	--mono-003: #{$mono-003};
+	--mono-004: #{$mono-004};
+	--mono-005: #{$mono-005};
+	--mono-006: #{$mono-006};
+	--mono-007: #{$mono-007};
+	--mono-008: #{$mono-008};
+	--mono-009: #{$mono-009};
+	--mono-010: var(--black);
+
+	// monochromes hsl value
+	--mono-000-hsl: #{hexToHSL($mono-000)};
+	--mono-001-hsl: #{hexToHSL($mono-001)};
+	--mono-002-hsl: #{hexToHSL($mono-002)};
+	--mono-003-hsl: #{hexToHSL($mono-003)};
+	--mono-004-hsl: #{hexToHSL($mono-004)};
+	--mono-005-hsl: #{hexToHSL($mono-005)};
+	--mono-006-hsl: #{hexToHSL($mono-006)};
+	--mono-007-hsl: #{hexToHSL($mono-007)};
+	--mono-008-hsl: #{hexToHSL($mono-008)};
+	--mono-009-hsl: #{hexToHSL($mono-009)};
+	--mono-010-hsl: #{hexToHSL($mono-010)};
+
+	@each $variant, $color in $theme-colors {
+		--color-#{$variant}: #{$color};
+		--color-#{$variant}-bg: hsl(#{hexToHSLLighten($color, 15)});
+		--color-#{$variant}-border: #{$color};
+		--color-#{$variant}-text: hsl(#{hexToHSLDarken($color, 30)});
+		--color-#{$variant}-text-contrast: var(--white);
+		--color-#{$variant}-hsl: #{hexToHSL($color)};
+		--color-#{$variant}-highlight: hsl(#{hexToHSLLighten($color, 10)});
+	}
+
+	--color-valid-bg: hsl(#{hexToHSLLighten($build-success, 40)});
+	--color-valid-border: #{$build-success};
+	--color-valid-highlight: hsl(#{hexToHSLLighten($build-success)});
+	--color-valid-text: hsl(#{hexToHSLDarken($build-success, 30)});
+
+	--color-invalid-bg: hsl(#{hexToHSLLighten($build-danger, 55)});
+	--color-invalid-border: #{$build-danger};
+	--color-invalid-highlight: hsl(#{hexToHSLLighten($build-danger)});
+	--color-invalid-text: hsl(#{hexToHSLDarken($build-danger)});
+	// END: DO NOT EDIT || DO NOT EDIT || DO NOT EDIT
+
+	// Codes below are modifiable
+	--global-radius: #{$spacer-8};
+	--global-radius-sm: #{$spacer-4};
+	--global-radius-lg: #{$spacer-16};
+	--global-opacity: 0.25;
+	--global-opacity-alt: 0.5;
+	--global-box-shadow-param: 0 #{$spacer-4} #{$spacer-4} -#{$spacer-4};
+	--global-box-shadow-param-small: 0 #{$spacer-10} #{$spacer-10} -#{$spacer-8};
+	--global-box-shadow: var(--global-box-shadow-param) hsla(var(--mono-005-hsl), var(--global-opacity));
+	--global-box-shadow-alt: var(--global-box-shadow-param) hsla(var(--black-hsl), var(--global-opacity-alt));
+	--global-box-shadow-inset-param: inset 0 0 2px 0;
+	--global-box-shadow-inset: var(--global-box-shadow-inset-param) hsla(var(--mono-005-hsl), var(--global-opacity));
+
+	--global-grid-columns-2: 50%;
+	--global-grid-columns-3: 33.333333%;
+	--global-grid-columns-4: 25%;
+
+	--icon-size: #{$spacer-24};
+	--icon-size-sm: #{$spacer-16};
+	--icon-size-lg: #{$spacer-32};
+	--icon-size-xl: #{$spacer-48};
+	--icon-size-xxl: #{$spacer-96};
+
+	--ui-box-shadow: var(--global-box-shadow-param-small) hsla(var(--mono-005-hsl), var(--global-opacity)),
+		var(--global-box-shadow-inset);
+	--ui-box-shadow-panel: var(--global-box-shadow), var(--global-box-shadow-inset);
+	--ui-box-shadow-modal: var(--global-box-shadow-alt), var(--global-box-shadow-inset);
+
+	--link-color: var(--color-primary);
+
+	// gaps
+	--gap-xs: 2px;
+	--gap-sm: #{$spacer-4};
+	--gap: #{$spacer-8};
+	--gap-md: #{$spacer-12};
+	--gap-lg: #{$spacer-16};
+	--gap-xl: #{$spacer-20};
+
+	// grid
+	--grid-gap: var(--gap);
+	--grid-columns-3: calc(var(--global-grid-columns-3) - var(--grid-gap));
+	--grid-columns-2: calc(var(--global-grid-columns-2) - var(--grid-gap));
+
+	// type
+	--hr-color: var(--mono-003);
+
+	// layout
+	--layout-bg: var(--mono-000);
+	--layout-color: var(--mono-008);
+
+	// layout drawer
+	--layout-drawer-bg: var(--mono-002);
+	--layout-drawer-collapse-width: #{$spacer-64};
+	--layout-drawer-expanded-width: 280px;
+
+	// layout modal
+	--modal-bg: var(--mono-001);
+	--modal-text: var(--mono-000);
+	--modal-border: var(--mono-000);
+
+	// backdrop
+	--backdrop: hsla(var(--mono-010-hsl), 0.75);
+
+	// form
+	--form-label-color: var(--mono-006);
+
+	--form-input-bg: var(--white);
+	--form-input-border: var(--white);
+	--form-input-color: var(--mono-010);
+
+	--form-input-focus-bg: var(--mono-000);
+	--form-input-focus-border: var(--mono-000);
+	--form-input-focus-color: var(--mono-010);
+
+	--form-input-placeholder-color: var(--mono-004);
+
+	--form-option-border: var(--color-danger-border);
+	--form-option-bg: var(--color-danger-bg);
+
+	--input-box-shadow-param: 0 0 0 0;
+	--input-box-shadow-color: hsla(var(--black-hsl), 0);
+
+	--input-focus-box-shadow-param: 0 0 0 4px;
+	--input-focus-box-shadow-color: hsla(var(--mono-008-hsl), var(--global-opacity));
+
+	// form icons | dark theme
+	--form-select-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='dimgrey' d='M15,11H9a1,1,0,0,1-.707-1.707h0l3-3h0a1,1,0,0,1,1.414,0h0l3,3h0A1,1,0,0,1,15,11ZM9,14h6a1,1,0,0,1,.707,1.707h0l-3,3h0a1,1,0,0,1-1.414,0h0l-3-3h0A1,1,0,0,1,9,14Z' transform='translate(-4 -4.5)'/%3E%3C/svg%3E");
+	--form-select-icon-danger: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='#{$build-danger}' d='M15,11H9a1,1,0,0,1-.707-1.707h0l3-3h0a1,1,0,0,1,1.414,0h0l3,3h0A1,1,0,0,1,15,11ZM9,14h6a1,1,0,0,1,.707,1.707h0l-3,3h0a1,1,0,0,1-1.414,0h0l-3-3h0A1,1,0,0,1,9,14Z' transform='translate(-4 -4.5)'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+	--form-select-icon-success: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='#{$build-success}' d='M15,11H9a1,1,0,0,1-.707-1.707h0l3-3h0a1,1,0,0,1,1.414,0h0l3,3h0A1,1,0,0,1,15,11ZM9,14h6a1,1,0,0,1,.707,1.707h0l-3,3h0a1,1,0,0,1-1.414,0h0l-3-3h0A1,1,0,0,1,9,14Z' transform='translate(-4 -4.5)'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+	--form-checkbox-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath fill='white' d='M42.059,14.549l0.014,0.012-20,24-0.014-.012a3.973,3.973,0,0,1-5.887.279h0l-10-10h0a4,4,0,1,1,5.657-5.657h0l6.9,6.9,17.2-20.635,0.014,0.012A3.982,3.982,0,1,1,42.059,14.549Z'/%3E%3C/svg%3E");
+	--form-checkbox-icon-danger: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath fill='#{$build-danger}' d='M42.059,14.549l0.014,0.012-20,24-0.014-.012a3.973,3.973,0,0,1-5.887.279h0l-10-10h0a4,4,0,1,1,5.657-5.657h0l6.9,6.9,17.2-20.635,0.014,0.012A3.982,3.982,0,1,1,42.059,14.549Z'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+	--form-checkbox-icon-success: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath fill='#{$build-success}' d='M42.059,14.549l0.014,0.012-20,24-0.014-.012a3.973,3.973,0,0,1-5.887.279h0l-10-10h0a4,4,0,1,1,5.657-5.657h0l6.9,6.9,17.2-20.635,0.014,0.012A3.982,3.982,0,1,1,42.059,14.549Z'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+	--form-radio-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Ccircle fill='white' cx='24' cy='24' r='16'/%3E%3C/svg%3E");
+	--form-radio-icon-danger: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Ccircle fill='#{$build-danger}' cx='24' cy='24' r='16'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+	--form-radio-icon-success: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Ccircle fill='#{$build-success}' cx='24' cy='24' r='16'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+
+	// form file
+	--form-file-height: #{$spacer-32 * 10};
+	--form-file-img-pos: #{$spacer-48};
+	--form-file-img-size: #{$spacer-16 * 10};
+	--form-file-text-height: #{$spacer-24};
+	--form-file-text-pos-1: calc(var(--form-file-img-size) + (var(--form-file-img-pos) * 1.25));
+	--form-file-text-pos-2: calc(var(--form-file-text-pos-1) + var(--form-file-text-height));
+
+	// form grid
+	--form-grid-gap: var(--gap-xl);
+	--form-grid-2: calc(var(--global-grid-columns-2) - var(--form-grid-gap));
+	--form-grid-3: calc(var(--global-grid-columns-3) - var(--form-grid-gap));
+	--form-grid-4: calc(var(--global-grid-columns-4) - var(--form-grid-gap));
+
+	// btn
+	--btn-bg: transparent;
+	--btn-border: transparent;
+	--btn-text: var(--layout-color);
+	--btn-group-radius: var(--global-radius-sm);
+	--btn-sm-group-radius: var(--global-radius-sm);
+	--btn-lg-group-radius: var(--global-radius);
+
+	// card
+	--card-bg: var(--white);
+	--card-border: var(--mono-001);
+	--card-body-pad: #{$spacer-40};
+	--card-group-gap: var(--gap);
+
+	// badge
+	--badge-bg: var(--mono-009);
+	--badge-text: var(--mono-000);
+	--badge-border: var(--badge-bg);
+
+	// alert
+	--alert-base-bg: var(--card-bg);
+	--alert-bg: var(--mono-008);
+	--alert-text: var(--mono-000);
+	--alert-border: var(--alert-bg);
+
+	// list
+	--list-icon-tick: var(--form-checkbox-icon-success);
+	--list-icon-plus: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath fill='#{$build-success}' d='M36,28H28v8a4,4,0,0,1-8,0V28H12a4,4,0,0,1,0-8h8V12a4,4,0,0,1,8,0v8h8A4,4,0,0,1,36,28Z'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+	--list-icon-minus: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath fill='#{$build-danger}' d='M36,28H12a4,4,0,0,1,0-8H36A4,4,0,0,1,36,28Z'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+	--list-icon-times: #{str-replace(
+			url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cpath fill='#{$build-danger}' d='M38.828,14.828L29.657,24l9.172,9.172h0a4,4,0,1,1-5.657,5.657h0L24,29.657l-9.172,9.172h0a4,4,0,1,1-5.657-5.657h0L18.343,24,9.172,14.828h0a4,4,0,1,1,5.657-5.657h0L24,18.343l9.172-9.172h0a4,4,0,1,1,5.657,5.657h0Z'/%3E%3C/svg%3E"),
+			"#",
+			"%23"
+		)};
+
+	// table
+	--table-pad: #{$spacer-12};
+	--table-pad-flc: #{$spacer-12};
+	--table-border-width: 1px;
+	--table-border: var(--table-border-width) solid var(--mono-000);
+	--table-row-odd-bg: hsla(var(--mono-001-hsl), 50%);
+
+	// accordion
+	--accordion-border-color: var(--mono-000);
+	--accordion-shadow-color: var(--mono-004);
+
+	// scrollbar
+	--scrollbar-color: var(--mono-008);
+}

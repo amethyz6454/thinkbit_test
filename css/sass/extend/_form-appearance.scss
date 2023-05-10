@@ -1,0 +1,6 @@
+@import "../cores/variables";
+@import "../cores/mixins";
+
+%extend-form-appearance {
+    @include appearance(none);
+}

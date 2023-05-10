@@ -1,0 +1,11 @@
+$icon-sizes: () !default;
+$icon-sizes: map-merge(
+    (
+        "16": var(--icon-size-sm),
+        "24": var(--icon-size),
+        "32": var(--icon-size-lg),
+        "48": var(--icon-size-xl),
+        "96": var(--icon-size-xxl),
+    ),
+    $icon-sizes
+);
